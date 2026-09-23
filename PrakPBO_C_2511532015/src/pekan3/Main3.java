@@ -73,14 +73,15 @@ public class Main3 {
 				if (akunAktif == null) {
 					System.out.println("Error: Anda belum membuka rekening!");
 				} else {
-					System.out.print ("Masukkan PIN untuk verifikassi: ");
+					System.out.print ("Masukkan PIN untuk verifikasi: ");
 					String pinInput = input.nextLine();
 					if (akunAktif.otentikasi(pinInput)) {
 						System.out.print ("Masukkan nominal tarik tunai: ");
 						double tarik = input.nextDouble();
+						input.nextLine();
 						akunAktif.tarikTunai(tarik);
 					} else {
-						System.out.println("Akses ditolak: Pin yang dimasukkan salah");
+						System.out.println("Akses ditolak: Pin yang anda masukkan salah!");
 					} 
 					
 				}
@@ -122,7 +123,13 @@ public class Main3 {
 				if (akunAktif == null) {
 					System.out.println ("Belum ada transaksi pada rekening ini");
 				} else {
-					akunAktif.cetakMutasi();
+					System.out.print ("Masukkan PIN untuk verifikassi: ");
+					String pinInput = input.nextLine();
+					if (akunAktif.otentikasi(pinInput)) {
+						akunAktif.cetakMutasi();
+					} else {
+						System.out.println("Akses ditolak: Pin yang dimasukkan salah");
+					}
 				}
 				break;
 					
